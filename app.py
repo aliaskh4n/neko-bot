@@ -17,7 +17,7 @@ def anime_info():
     anime_id = request.args.get('id')
     if anime_id == '123625':
         anime = sql.get_anime(anime_id)
-        return render_template('anime_info.html', id=anime[0], series=anime[1], name=anime[2], description=anime[3], photo=anime[4],)
+        return render_template('anime_info.html', id=anime[0], series=anime[1], name=anime[2], description=anime[3], photo=anime[4])
 
 @app.route('/history')
 def history():
