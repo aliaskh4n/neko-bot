@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+    <title>Anime</title>
+    <style>
+        body {
+            background-color: var(--tg-theme-secondary-bg-color);
+            background-image: url("https://pa1.aminoapps.com/6887/de6d0597a7e7d9ed645ab09d12d1bc851758f1c0r1-684-683_hq.gif");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            font-family: "Roboto Mono", monospace;
+            font-weight: <weight>;
+            font-style: bold;
+            margin: 0;
+            color: var(--tg-theme-text-color);
+            padding: 0;
+            height: 100vh;
+            overflow-x: hidden;
+        }
+        .video {
+            background-color: var(--tg-theme-bg-color);
+            width: 100%;
+            height: auto;
+        }
+        video {
+            background-color: var(--tg-theme-bg-color);
+            width: 100%;
+        }
+        .name {
+            background-color: var(--tg-theme-bg-color);
+            text-align: center;
+            width: 100%;
+            font-weight: bold;
+            height: auto;
+            font-size: 20px;
+            margin-bottom: 5%;
+        }
+        .anime_text {
+            margin-bottom: ;
+            text-align: center;
+        }
+        .buttons {
+            margin: 0.5%;
+            width: 100%;
+            height: auto;
+            display: flex;
+        }
+        .button {
+            border: 2px solid var(--tg-theme-link-color);
+            border-radius: 10px;
+            color: var(--tg-theme-text-color);
+            background-color: var(--tg-theme-bg-color);
+            width: 32.5%;
+            margin: 0.5%;
+            height: 30px;
+        }
+        option {
+            background-color: var(--tg-theme-bg-color);
+            color: var(--tg-theme-text-color);
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div class="name">
+            Милый во франксе 1 серия
+        </div>
+        <div class="video">
+            <video id="video" controls autoplay>
+                <source id="video-source" src="{{ url }}" type="video/mp4" lang="ru" label="1080p" res="1080" selected="true">
+            </video>
+        </div>
+        <div class="buttons">
+            <button class="button">Назад</button>
+            <select id="seriesSelector"class="button">
+                {% for i in range(series) %}
+                    <option value="{{ i+1 }}">Серия {{ i+1 }}</option>
+                {% endfor %}
+            </select>
+            <button class="button">Следущий</button>
+        </div>
+    </div>
+    <div class="zhopa"></div>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script>
+        var id = {{ id }};
+        var series = {{ series }};
+        let webapp = window.Telegram.WebApp;
+        var BackButton = webapp.BackButton;
+        BackButton.show();
+        webapp.onEvent('backButtonClicked', function() {
+            window.location.href = `/anime-info?id=${id}`;
+            BackButton.hide();
+        });
+        document.getElementById('seriesSelector').addEventListener('change', function() {
+            var selected = this.value;
+            var selectedOption = this.options[this.selectedIndex];
+            selectedOption.value = {{ serie }};
+            selectedOption.text = `Серия {{ serie }}`;
+            window.location.href = `/anime?id=${id}&serie=${selected}&series=${series}`;
+        });
+    </script>
+</body>
+</html>

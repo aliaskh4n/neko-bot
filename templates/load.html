@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+    <title>Anime</title>
+    <style>
+        body {
+            font-family: "Roboto Mono", monospace;
+            font-optical-sizing: auto;
+            font-weight: <weight>;
+            font-style: bold;
+            margin: 0;
+            padding: 0;
+            align-items: center;
+            display: flex;
+            justify-content: center;
+            height: 100vh;
+            overflow-x: hidden;
+        }
+        .photo {
+            background-image: url("https://media.tenor.com/ipuTozw3PXsAAAAi/pixel-cat.gif");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            width: 100%;
+            height: 100%;
+        }
+        .main {
+            width: 200px;
+            height: 200px;
+            text-align: center;
+            color: var(--tg-theme-text-color);
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div class="photo"></div>
+        <h3>Загрузка...</h3>
+    </div>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script>
+        var delayInMilliseconds = 4000;
+        function redirect() {
+            window.location.href = '/anime-info?id=123625';
+        }
+        setTimeout(redirect, delayInMilliseconds);
+    </script>
+</body>
+</html>
